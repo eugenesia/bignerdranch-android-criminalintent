@@ -12,4 +12,15 @@ public class Crime {
         mId = UUID.randomUUID();
     }
 
+    public String getTitle() {
+        return mTitle;
+    }
+
+    public void setTitle(String title) {
+        mTitle = title;
+    }
+
+    public UUID getId() {
+        return mId;
+    }
 }
