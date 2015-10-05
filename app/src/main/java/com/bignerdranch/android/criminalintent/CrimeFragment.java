@@ -65,6 +65,16 @@ public class CrimeFragment extends Fragment {
     // Disable for now but will popout a date picker later on.
     mDateButton.setEnabled(false);
 
+    mSolvedCheckBox = (CheckBox) v.findViewById(R.id.crime_solved);
+    // Allow changing crime's solved property via checkbox.
+    mSolvedCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+      @Override
+      public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        // Set the crime's solved property.
+        mCrime.setSolved(isChecked);
+      }
+    });
+
     // Return inflated fragment view with its listeners back to the
     // Activity.
     return v;
