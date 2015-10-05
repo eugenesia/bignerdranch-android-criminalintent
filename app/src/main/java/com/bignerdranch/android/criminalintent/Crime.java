@@ -1,26 +1,35 @@
 package com.bignerdranch.android.criminalintent;
 
+import java.util.Date;
 import java.util.UUID;
 
 public class Crime {
-    
-    private UUID mId;
-    private String mTitle;
-    
-    public Crime() {
-        // Generate unique identifier.
-        mId = UUID.randomUUID();
-    }
 
-    public String getTitle() {
-        return mTitle;
-    }
+  // Unique ID of the crime.
+  private UUID mId;
+  // Title of the crime.
+  private String mTitle;
+  // Date the crime was committed.
+  private Date mDate;
+  // Date the crime was solved.
+  private boolean mSolved;
 
-    public void setTitle(String title) {
-        mTitle = title;
-    }
+  public Crime() {
+    // Generate unique identifier.
+    mId = UUID.randomUUID();
+    // Today's date.
+    mDate = new Date();
+  }
 
-    public UUID getId() {
-        return mId;
-    }
+  public String getTitle() {
+    return mTitle;
+  }
+
+  public void setTitle(String title) {
+    mTitle = title;
+  }
+
+  public UUID getId() {
+    return mId;
+  }
 }
