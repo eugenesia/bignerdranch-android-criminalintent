@@ -38,6 +38,17 @@ public class CrimeLab {
     // equivalent, which developers were required to use prior to Java 7, is
     //   mCrimes = new ArrayList<Crime>();.)
     mCrimes = new ArrayList<>();
+
+    // Populate list with 100 random crimes.
+    for (int i = 0; i < 100; i++) {
+      Crime crime = new Crime();
+      crime.setTitle("Crime #" + i);
+
+      // Every other one is solved.
+      crime.setSolved(i % 2);
+
+      mCrimes.add(crime);
+    }
   }
 
   // Get crime with a particular id.
