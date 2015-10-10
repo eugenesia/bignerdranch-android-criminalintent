@@ -45,7 +45,7 @@ public class CrimeLab {
       crime.setTitle("Crime #" + i);
 
       // Every other one is solved.
-      crime.setSolved(i % 2);
+      crime.setSolved(i % 2 == 0);
 
       mCrimes.add(crime);
     }
