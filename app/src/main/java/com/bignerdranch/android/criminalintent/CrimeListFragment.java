@@ -19,12 +19,16 @@ public class CrimeListFragment extends Fragment {
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
     Bundle savedInstanceState) {
 
-    // Get the RecyclerView showing a list of crimes.
+    // Inflate the layout into a View.
     View view = inflater.inflate(R.layout.fragment_crime_list, container, false);
 
-    // ID of the container.
+    // Get the RecyclerView from the layout.
     mCrimeRecyclerView = (RecyclerView) view
       .findViewById(R.id.crime_recycler_view);
+
+    // Note that as soon as you create your RecyclerView, you give it another
+    // object called a LayoutManager. RecyclerView requires a LayoutManager to
+    // work. If you forget to give it one, it will crash.
     mCrimeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
     return view;
