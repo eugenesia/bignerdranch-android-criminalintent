@@ -16,7 +16,10 @@ import java.util.List;
  */
 public class CrimeListFragment extends Fragment {
 
+  // RecyclerView shows a list of ViewHolders, which shows Crimes in a list.
   private RecyclerView mCrimeRecyclerView;
+  // Adapter manages data and binding.
+  private CrimeAdapter mAdapter;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,7 +37,20 @@ public class CrimeListFragment extends Fragment {
     // work. If you forget to give it one, it will crash.
     mCrimeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+    updateUI();
+
     return view;
+  }
+
+  // Connect the Adapter to the RecyclerView.
+  private void updateUI() {
+    // Get the singleton instance.
+    CrimeLab crimeLab = CrimeLab.get(getActivity());
+
+    List<Crime> crimes = crimeLab.getCrimes();
+
+    mAdapter = new CrimeAdapter(crimes);
+    mCrimeRecyclerView.setAdapter(mAdapter);
   }
 
 
