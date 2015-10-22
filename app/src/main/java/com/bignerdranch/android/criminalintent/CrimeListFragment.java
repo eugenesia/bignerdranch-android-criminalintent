@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.List;
+
 /**
  * Fragment to show a list of crimes.
  */
@@ -47,6 +49,18 @@ public class CrimeListFragment extends Fragment {
       super(itemView);
 
       mTitleTextView = (TextView) itemView;
+    }
+  }
+
+
+  // Adapter to manage child View data.
+  private class CrimeAdapter extends RecyclerView.Adapter<CrimeHolder> {
+
+    // List of crimes to populate child ViewHolders with.
+    private List<Crime> mCrimes;
+
+    public CrimeAdapter(List<Crime> crimes) {
+      mCrimes = crimes;
     }
   }
 }
