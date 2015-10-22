@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 /**
  * Fragment to show a list of crimes.
@@ -32,5 +33,20 @@ public class CrimeListFragment extends Fragment {
     mCrimeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
     return view;
+  }
+
+
+  // The ViewHolder class holding Views within the RecyclerView.
+  private class CrimeHolder extends RecyclerView.ViewHolder {
+
+    // Child View of the ViewHolder.
+    public TextView mTitleTextView;
+
+    // Child View is passed in on creation.
+    public CrimeHolder(View itemView) {
+      super(itemView);
+
+      mTitleTextView = (TextView) itemView;
+    }
   }
 }
