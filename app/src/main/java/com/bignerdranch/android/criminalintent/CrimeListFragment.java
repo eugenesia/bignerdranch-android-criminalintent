@@ -62,5 +62,38 @@ public class CrimeListFragment extends Fragment {
     public CrimeAdapter(List<Crime> crimes) {
       mCrimes = crimes;
     }
+
+    // Called by RecyclerView when it needs a new View to display an item.
+    // RecyclerView does not expect this to be hooked up to any data yet.
+    @Override
+    public CrimeHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+      LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
+
+      // Inflate a layout from Android standard library, called
+      // "simple_list_item_1". This layout contains a single TextView, styled to
+      // look nice in a list.
+      View view = layoutInflater
+        .inflate(android.R.layout.simple_list_item_1, parent, false);
+
+      return new CrimeHolder(view);
+    }
+
+    // Bind a ViewHolder's View to the model. Receives the ViewHolder and a
+    // position in the data set.
+    @Override
+    public void onBindViewHolder(CrimeHolder holder, int position) {
+
+      // Get data from model.
+      Crime crime = mCrimes.get(position);
+
+      // Update the View to reflect the model data.
+      holder.mTitleTextView.setText(crime.getTitle());
+    }
+
+    @Override
+    public int getItemCount() {
+      return mCrimes.size();
+    }
   }
 }
