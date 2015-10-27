@@ -90,7 +90,7 @@ public class CrimeListFragment extends Fragment {
       // "simple_list_item_1". This layout contains a single TextView, styled to
       // look nice in a list.
       View view = layoutInflater
-        .inflate(android.R.layout.simple_list_item_1, parent, false);
+        .inflate(R.layout.list_item_crime, parent, false);
 
       return new CrimeHolder(view);
     }
