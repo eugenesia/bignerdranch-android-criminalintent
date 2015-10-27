@@ -140,7 +140,7 @@ public class CrimeListFragment extends Fragment {
       Crime crime = mCrimes.get(position);
 
       // Update the View to reflect the model data.
-      holder.mTitleTextView.setText(crime.getTitle());
+      holder.bindCrime(crime);
     }
 
     @Override
