@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -56,7 +57,10 @@ public class CrimeListFragment extends Fragment {
 
 
   // The ViewHolder class holding Views within the RecyclerView.
-  private class CrimeHolder extends RecyclerView.ViewHolder {
+  // Implements OnClickListener so we can add a listener handler function as a
+  // child method.
+  private class CrimeHolder extends RecyclerView.ViewHolder
+    implements View.OnClickListener {
 
     // Data about the crime showing in this ViewHolder.
     private Crime mCrime;
@@ -73,6 +77,9 @@ public class CrimeListFragment extends Fragment {
     // Child View is passed in on creation.
     public CrimeHolder(View itemView) {
       super(itemView);
+
+      // So we can use a class method to handle the click.
+      itemView.setOnClickListener(this);
 
       // Get child Views from inflated layout View.
       //
@@ -93,6 +100,14 @@ public class CrimeListFragment extends Fragment {
         itemView.findViewById(R.id.list_item_crime_date_text_view);
       mSolvedCheckBox = (CheckBox)
         itemView.findViewById(R.id.list_item_crime_solved_check_box);
+    }
+
+    // Handle click on ViewHolder.
+    @Override
+    public void onClick(View v) {
+      Toast.makeText(getActivity(),
+        mCrime.getTitle() + " clicked!", Toast.LENGTH_SHORT)
+        .show();
     }
 
     // Update child Views to show status of crime.
