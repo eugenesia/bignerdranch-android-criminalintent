@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.util.List;
@@ -57,14 +58,38 @@ public class CrimeListFragment extends Fragment {
   // The ViewHolder class holding Views within the RecyclerView.
   private class CrimeHolder extends RecyclerView.ViewHolder {
 
-    // Child View of the ViewHolder.
-    public TextView mTitleTextView;
+    // Child Views of the ViewHolder.
+
+    // Title of the crime.
+    private TextView mTitleTextView;
+    // Date of crime.
+    private TextView mDateTextView;
+    // Whether crime was solved.
+    private CheckBox mSolvedCheckBox;
 
     // Child View is passed in on creation.
     public CrimeHolder(View itemView) {
       super(itemView);
 
-      mTitleTextView = (TextView) itemView;
+      // Get child Views from inflated layout View.
+      //
+      // Calls to findViewById(int) are often expensive. They go door to door
+      // throughout your entire itemView looking for your View: "Hey, are you
+      // list_item_crime_title_text_view? No? Oh, sorry for troubling you." This
+      // takes time to do, and you have to walk all over your memory
+      // neighborhood to do it.
+      //
+      // ViewHolder can relieve a lot of this pain. By stashing the results of
+      // these findViewById(int) calls, you only have to spend that time in
+      // createViewHolder(). When onBindViewHolder() is called, the work is
+      // already done. Which is nice, because onBindViewHolder() is called much
+      // more often than onCreateViewHolder().
+      mTitleTextView = (TextView)
+        itemView.findViewById(R.id.list_item_crime_title_text_view);
+      mDateTextView = (TextView)
+        itemView.findViewById(R.id.list_item_crime_date_text_view);
+      mSolvedCheckBox = (CheckBox)
+        itemView.findViewById(R.id.list_item_crime_solved_check_box);
     }
   }
 
