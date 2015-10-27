@@ -58,6 +58,9 @@ public class CrimeListFragment extends Fragment {
   // The ViewHolder class holding Views within the RecyclerView.
   private class CrimeHolder extends RecyclerView.ViewHolder {
 
+    // Data about the crime showing in this ViewHolder.
+    private Crime mCrime;
+
     // Child Views of the ViewHolder.
 
     // Title of the crime.
@@ -90,6 +93,14 @@ public class CrimeListFragment extends Fragment {
         itemView.findViewById(R.id.list_item_crime_date_text_view);
       mSolvedCheckBox = (CheckBox)
         itemView.findViewById(R.id.list_item_crime_solved_check_box);
+    }
+
+    // Update child Views to show status of crime.
+    public void bindCrime(Crime crime) {
+      mCrime = crime;
+      mTitleTextView.setText(mCrime.getTitle());
+      mDateTextView.setText(mCrime.getDate().toString());
+      mSolvedCheckBox.setChecked(mCrime.isSolved());
     }
   }
 
