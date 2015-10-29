@@ -53,11 +53,9 @@ public class CrimeFragment extends Fragment {
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    // Get ID of crime to display from Activity's Intent extra. This is a
-    // shortcut which sacrifices loose coupling principles, reaching directly to
-    // the hosting Activity which this Fragment should know nothing about.
-    UUID crimeId = (UUID) getActivity().getIntent()
-      .getSerializableExtra(CrimeActivity.EXTRA_CRIME_ID);
+    // Get crime ID from this Fragment's arguments Bundle, stashed here by the
+    // Activity when creating a new Fragment instance.
+    UUID crimeId = (UUID) getArguments().getSerializable(ARG_CRIME_ID);
 
     mCrime = CrimeLab.get(getActivity()).getCrime(crimeId);
   }
