@@ -47,6 +47,7 @@ public class CrimeFragment extends Fragment {
 
     // View v contains an EditText, defined inside R.layout.fragment_crime.
     mTitleField = (EditText) v.findViewById(R.id.crime_title);
+    mTitleField.setText(mCrime.getTitle());
 
     // Define a class here to watch for various changes of text.
     mTitleField.addTextChangedListener(new TextWatcher() {
@@ -75,6 +76,8 @@ public class CrimeFragment extends Fragment {
     mDateButton.setEnabled(false);
 
     mSolvedCheckBox = (CheckBox) v.findViewById(R.id.crime_solved);
+    mSolvedCheckBox.setChecked(mCrime.isSolved());
+
     // Allow changing crime's solved property via checkbox.
     mSolvedCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
       @Override
