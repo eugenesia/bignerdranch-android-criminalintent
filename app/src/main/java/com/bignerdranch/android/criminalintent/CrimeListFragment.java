@@ -107,9 +107,12 @@ public class CrimeListFragment extends Fragment {
     @Override
     public void onClick(View v) {
 
+      // Store ID of crime to show in the Intent to pass to the newly-started
+      // CrimeActivity.
+      Intent intent = CrimeActivity.newIntent(getActivity(), mCrime.getId());
+
       // Start a new CrimeActivity from this ViewHolder, to show details of a
       // single crime.
-      Intent intent = new Intent(getActivity(), CrimeActivity.class);
       startActivity(intent);
     }
 
