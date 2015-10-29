@@ -26,6 +26,20 @@ public class CrimeActivity extends SingleFragmentActivity {
   // Create a Fragment of the appropriate type for this subclass.
   @Override
   protected Fragment createFragment() {
-    return new CrimeFragment();
+
+    // Notice that the need for independence does not go both ways.
+    // CrimeActivity has to know plenty about CrimeFragment, including that it
+    // has a newInstance(UUID) method. This is fine. Hosting activities should
+    // know the specifics of how to host their fragments, but fragments should
+    // not have to know specifics about their activities. At least, not if you
+    // want to maintain the flexibility of independent fragments.
+
+    // Get ID of crime passed in by ViewHolder to this Activity's Intent.
+    UUID crimeId = (UUID) getIntent()
+      .getSerializableExtra(EXTRA_CRIME_ID);
+
+    // Use newInstance() to get a new Fragment instance, with the crime ID in
+    // the Fragment's arguments Bundle.
+    return CrimeFragment.newInstance(crimeId);
   }
 }
