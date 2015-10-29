@@ -24,6 +24,7 @@ public class CrimeListFragment extends Fragment {
   // Adapter manages data and binding.
   private CrimeAdapter mAdapter;
 
+
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
     Bundle savedInstanceState) {
@@ -45,6 +46,16 @@ public class CrimeListFragment extends Fragment {
     return view;
   }
 
+
+  // Reload list Views when returning from displaying a crime in CrimeActivity,
+  // as user may have modified the crime data.
+  @Override
+  public void onResume() {
+    super.onResume();
+    updateUI();
+  }
+
+
   // Connect the Adapter to the RecyclerView.
   private void updateUI() {
     // Get the singleton instance.
@@ -52,8 +63,15 @@ public class CrimeListFragment extends Fragment {
 
     List<Crime> crimes = crimeLab.getCrimes();
 
-    mAdapter = new CrimeAdapter(crimes);
-    mCrimeRecyclerView.setAdapter(mAdapter);
+    if (mAdapter == null) {
+      mAdapter = new CrimeAdapter(crimes);
+      mCrimeRecyclerView.setAdapter(mAdapter);
+    }
+    else {
+      // Notify listeners that the dataset has changed, as user might have
+      // edited the Crime details.
+      mAdapter.notifyDataSetChanged();
+    }
   }
 
 
