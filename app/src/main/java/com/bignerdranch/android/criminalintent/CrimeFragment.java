@@ -15,6 +15,10 @@ import android.widget.EditText;
 import java.util.UUID;
 
 public class CrimeFragment extends Fragment {
+
+  // Keys for Fragment's Bundle arguments.
+  private static final String ARG_CRIME_ID = "crime_id";
+
   // Data for crime being shown.
   private Crime mCrime;
   // Editable title of the crime.
@@ -23,6 +27,27 @@ public class CrimeFragment extends Fragment {
   private Button mDateButton;
   // Whether the crime has been solved.
   private CheckBox mSolvedCheckBox;
+
+  // To attach the arguments bundle to a fragment, you call
+  // Fragment.setArguments(Bundle). Attaching arguments to a fragment must be
+  // done after the fragment is created but before it is added to an activity.
+  //
+  // To hit this window, Android programmers follow a convention of adding a
+  // static method named newInstance() to the Fragment class. This method
+  // creates the fragment instance and bundles up and sets its arguments.
+  //
+  // When the hosting activity needs an instance of that fragment, you have it
+  // call the newInstance() method rather than calling the constructor directly.
+  // The activity can pass in any required parameters to newInstance() that the
+  // fragment needs to create its arguments.
+  public static CrimeFragment newInstance(UUID crimeId) {
+    Bundle args = new Bundle();
+    args.putSerializable(ARG_CRIME_ID, crimeId);
+
+    CrimeFragment fragment = new CrimeFragment();
+    fragment.setArguments(args);
+    return fragment;
+  }
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
