@@ -12,6 +12,8 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 
+import java.util.UUID;
+
 public class CrimeFragment extends Fragment {
   // Data for crime being shown.
   private Crime mCrime;
@@ -25,7 +27,14 @@ public class CrimeFragment extends Fragment {
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    mCrime = new Crime();
+
+    // Get ID of crime to display from Activity's Intent extra. This is a
+    // shortcut which sacrifices loose coupling principles, reaching directly to
+    // the hosting Activity which this Fragment should know nothing about.
+    UUID crimeId = (UUID) getActivity().getIntent()
+      .getSerializableExtra(CrimeActivity.EXTRA_CRIME_ID);
+
+    mCrime = CrimeLab.get(getActivity()).getCrime(crimeId);
   }
 
   @Override
