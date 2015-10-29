@@ -1,5 +1,6 @@
 package com.bignerdranch.android.criminalintent;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -105,9 +106,11 @@ public class CrimeListFragment extends Fragment {
     // Handle click on ViewHolder.
     @Override
     public void onClick(View v) {
-      Toast.makeText(getActivity(),
-        mCrime.getTitle() + " clicked!", Toast.LENGTH_SHORT)
-        .show();
+
+      // Start a new CrimeActivity from this ViewHolder, to show details of a
+      // single crime.
+      Intent intent = new Intent(getActivity(), CrimeActivity.class);
+      startActivity(intent);
     }
 
     // Update child Views to show status of crime.
