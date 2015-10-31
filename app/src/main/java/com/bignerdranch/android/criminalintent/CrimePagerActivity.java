@@ -28,6 +28,13 @@ public class CrimePagerActivity extends FragmentActivity {
 
     mCrimes = CrimeLab.get(this).getCrimes();
     FragmentManager fragmentManager = getSupportFragmentManager();
+
+    // Then you set the adapter to be an unnamed instance of
+    // FragmentStatePagerAdapter. Creating the FragmentStatePagerAdapter
+    // requires the FragmentManager. Remember that FragmentStatePagerAdapter is
+    // your agent managing the conversation with ViewPager. For your agent to do
+    // its job with the fragments that getItem(int) returns, it needs to be able
+    // to add them to your activity. That is why it needs your FragmentManager.
     mViewPager.setAdapter(new FragmentStatePagerAdapter(fragmentManager) {
 
       @Override
