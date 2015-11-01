@@ -47,8 +47,8 @@ public class CrimeListFragment extends Fragment {
   }
 
 
-  // Reload list Views when returning from displaying a crime in CrimeActivity,
-  // as user may have modified the crime data.
+  // Reload list Views when returning from displaying a crime in
+  // CrimePagerActivity, as user may have modified the crime data.
   @Override
   public void onResume() {
     super.onResume();
