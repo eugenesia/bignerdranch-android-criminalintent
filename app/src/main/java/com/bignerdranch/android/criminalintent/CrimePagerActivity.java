@@ -68,5 +68,16 @@ public class CrimePagerActivity extends FragmentActivity {
         return mCrimes.size();
       }
     });
+
+    // Show the Crime clicked instead of the the Crime with index 0.
+    for (int i = 0; i < mCrimes.size(); i++) {
+
+      // Find the Crime with the same UUID as the one passed in this Activity's
+      // Intent.
+      if (mCrimes.get(i).getId().equals(crimeId)) {
+        mViewPager.setCurrentItem(i);
+        break;
+      }
+    }
   }
 }
