@@ -105,8 +105,12 @@ public class CrimeFragment extends Fragment {
       @Override
       public void onClick(View v) {
 
-        FragmentManager manager = getFragmentManager();
-        DatePickerFragment dialog = new DatePickerFragment();
+        FragmentManager manager = getActivity()
+          .getSupportFragmentManager();
+
+        // Create a new DatePickerFragment with the crime's date bundled in.
+        DatePickerFragment dialog = DatePickerFragment
+          .newInstance(mCrime.getDate());
 
         // Get the dialog added to the FragmentManager with the key, and put it
         // on screen.
