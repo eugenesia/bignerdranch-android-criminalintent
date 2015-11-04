@@ -23,6 +23,9 @@ public class CrimeFragment extends Fragment {
   // Key for DialogFragment in FragmentManager.
   private static final String DIALOG_DATE = "DialogDate";
 
+  // Request code for date data returned from DatePickerFragment.
+  private static final int REQUEST_DATE = 0;
+
   // Data for crime being shown.
   private Crime mCrime;
   // Editable title of the crime.
@@ -111,6 +114,9 @@ public class CrimeFragment extends Fragment {
         // Create a new DatePickerFragment with the crime's date bundled in.
         DatePickerFragment dialog = DatePickerFragment
           .newInstance(mCrime.getDate());
+
+        // Receive data back from the DialogFragment.
+        dialog.setTargetFragment(CrimeFragment.this, REQUEST_DATE);
 
         // Get the dialog added to the FragmentManager with the key, and put it
         // on screen.
