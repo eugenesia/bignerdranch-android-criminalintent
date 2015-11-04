@@ -2,6 +2,7 @@ package com.bignerdranch.android.criminalintent;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -18,6 +19,9 @@ public class CrimeFragment extends Fragment {
 
   // Keys for Fragment's Bundle arguments.
   private static final String ARG_CRIME_ID = "crime_id";
+
+  // Key for DialogFragment in FragmentManager.
+  private static final String DIALOG_DATE = "DialogDate";
 
   // Data for crime being shown.
   private Crime mCrime;
@@ -95,8 +99,20 @@ public class CrimeFragment extends Fragment {
     mDateButton = (Button) v.findViewById(R.id.crime_date);
     mDateButton.setText(mCrime.getDate().toString());
 
-    // Disable for now but will popout a date picker later on.
-    mDateButton.setEnabled(false);
+    // Pop out a date picker dialog on click.
+    mDateButton.setOnClickListener(new View.OnClickListener() {
+
+      @Override
+      public void onClick(View v) {
+
+        FragmentManager manager = getFragmentManager();
+        DatePickerFragment dialog = new DatePickerFragment();
+
+        // Get the dialog added to the FragmentManager with the key, and put it
+        // on screen.
+        dialog.show(manager, DIALOG_DATE);
+      }
+    });
 
     mSolvedCheckBox = (CheckBox) v.findViewById(R.id.crime_solved);
     mSolvedCheckBox.setChecked(mCrime.isSolved());
