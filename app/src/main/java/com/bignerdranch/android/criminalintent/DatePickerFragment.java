@@ -1,6 +1,7 @@
 package com.bignerdranch.android.criminalintent;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
@@ -18,10 +19,15 @@ import java.util.Date;
  */
 public class DatePickerFragment extends DialogFragment {
 
+  // Key for Extra to pass date back to CrimeFragment.
+  public static final String EXTRA_DATE =
+    "com.bignerdranch.android.criminalintent.date";
+
   // Key to store date in bundle.
   private static final String ARG_DATE = "date";
 
   private DatePicker mDatePicker;
+
 
   // Create a new instance of the fragment, with the date stored in its Bundle.
   public static DatePickerFragment newInstance(Date date) {
@@ -34,6 +40,7 @@ public class DatePickerFragment extends DialogFragment {
 
     return fragment;
   }
+
 
   @Override
   @NonNull
@@ -98,5 +105,31 @@ public class DatePickerFragment extends DialogFragment {
       // Set OK button but return null listener for now.
       .setPositiveButton(android.R.string.ok, null)
       .create();
+  }
+
+
+  // Send selected date back to target Fragment (calling Fragment).
+  private void sendResult(int resultCode, Date date) {
+
+    if (getTargetFragment() == null) {
+      return;
+    }
+
+    // Activity.onActivityResult() is the method that the ActivityManager calls
+    // on the parent activity after the child activity dies. When dealing with
+    // activities, you do not call Activity.onActivityResult() yourself; that is
+    // the ActivityManager’s job. After the activity has received the call, the
+    // activity’s FragmentManager then calls Fragment.onActivityResult() on the
+    // appropriate fragment.
+    //
+    // When dealing with two fragments hosted by the same activity, you can
+    // borrow Fragment.onActivityResult() and call it directly on the target
+    // fragment to pass back data.
+
+    Intent intent = new Intent();
+    intent.putExtra(EXTRA_DATE, date);
+
+    getTargetFragment()
+      .onActivityResult(getTargetRequestCode(), resultCode, intent);
   }
 }
