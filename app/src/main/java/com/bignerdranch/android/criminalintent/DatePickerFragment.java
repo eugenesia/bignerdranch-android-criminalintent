@@ -5,10 +5,12 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.DatePicker;
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -59,13 +61,35 @@ public class DatePickerFragment extends DialogFragment {
     // If you created the DatePicker in code, you would have to programmatically
     // set an ID on the DatePicker for its state saving to work.
 
+    // Date of the crime to be shown.
+    Date date = (Date) getArguments().getSerializable(ARG_DATE);
+
+    // DatePickerFragment needs to initialize the DatePicker using the
+    // information held in the Date. However, initializing the DatePicker
+    // requires integers for the month, day, and year. Date is more of a
+    // timestamp and cannot provide integers like this directly.
+    //
+    // To get the integers you need, you must create a Calendar object and use
+    // the Date to configure the Calendar. Then you can retrieve the required
+    // information from the Calendar.
+
+    Calendar calendar = Calendar.getInstance();
+    calendar.setTime(date);
+
+    int year = calendar.get(Calendar.YEAR);
+    int month = calendar.get(Calendar.MONTH);
+    int day = calendar.get(Calendar.DAY_OF_MONTH);
+
     // The DatePicker View.
     View v = LayoutInflater.from(getActivity())
       .inflate(R.layout.dialog_date, null);
 
+    mDatePicker = (DatePicker) v.findViewById(R.id.dialog_date_date_picker);
+    mDatePicker.init(year, month, day, null);
+
     return new AlertDialog.Builder(getActivity())
 
-      // Set the AlertDialog's View to the DatePicker View.
+      // Set the AlertDialog to show the inflated layout.
       .setView(v)
 
       // Set title of the dialog.
