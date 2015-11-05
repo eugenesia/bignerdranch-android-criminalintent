@@ -1,6 +1,8 @@
 package com.bignerdranch.android.criminalintent;
 
+import android.app.Activity;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,6 +15,7 @@ import android.widget.DatePicker;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  * Hosts the AlertDialog.
@@ -102,8 +105,23 @@ public class DatePickerFragment extends DialogFragment {
       // Set title of the dialog.
       .setTitle(R.string.date_picker_title)
 
-      // Set OK button but return null listener for now.
-      .setPositiveButton(android.R.string.ok, null)
+      // OK button.
+      .setPositiveButton(android.R.string.ok,
+
+        new DialogInterface.OnClickListener() {
+
+          @Override
+          public void onClick(DialogInterface dialog, int which) {
+
+            int year = mDatePicker.getYear();
+            int month = mDatePicker.getMonth();
+            int day = mDatePicker.getDayOfMonth();
+            Date date = new GregorianCalendar(year, month, day).getTime();
+
+            // Send the selected date back to the target Fragment.
+            sendResult(Activity.RESULT_OK, date);
+          }
+        })
       .create();
   }
 
