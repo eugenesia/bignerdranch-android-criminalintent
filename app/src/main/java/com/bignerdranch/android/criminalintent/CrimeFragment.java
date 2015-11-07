@@ -103,7 +103,7 @@ public class CrimeFragment extends Fragment {
 
     // Show crime date on button.
     mDateButton = (Button) v.findViewById(R.id.crime_date);
-    mDateButton.setText(mCrime.getDate().toString());
+    updateDate();
 
     // Pop out a date picker dialog on click.
     mDateButton.setOnClickListener(new View.OnClickListener() {
@@ -156,7 +156,13 @@ public class CrimeFragment extends Fragment {
       Date date = (Date) data
         .getSerializableExtra(DatePickerFragment.EXTRA_DATE);
       mCrime.setDate(date);
-      mDateButton.setText(mCrime.getDate().toString());
+      updateDate();
     }
+  }
+
+
+  // Update mDateButton to show Crime date.
+  private void updateDate() {
+    mDateButton.setText(mCrime.getDate().toString());
   }
 }
