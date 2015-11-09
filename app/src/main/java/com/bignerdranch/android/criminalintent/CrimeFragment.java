@@ -15,6 +15,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
@@ -35,6 +36,8 @@ public class CrimeFragment extends Fragment {
   private EditText mTitleField;
   // Button showing date and allowing edit via date picker.
   private Button mDateButton;
+  // Button showing time and allowing edit via time picker.
+  private Button mTimeButton;
   // Whether the crime has been solved.
   private CheckBox mSolvedCheckBox;
 
@@ -126,6 +129,12 @@ public class CrimeFragment extends Fragment {
         dialog.show(manager, DIALOG_DATE);
       }
     });
+
+
+    // Show time of crime.
+    mTimeButton = (Button) v.findViewById(R.id.crime_time);
+    mTimeButton.setText(new SimpleDateFormat("HH:mm").format(mCrime.getDate()));
+
 
     mSolvedCheckBox = (CheckBox) v.findViewById(R.id.crime_solved);
     mSolvedCheckBox.setChecked(mCrime.isSolved());
