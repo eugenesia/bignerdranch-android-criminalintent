@@ -27,6 +27,16 @@ public class CrimeListFragment extends Fragment {
   private CrimeAdapter mAdapter;
 
 
+  // Report that this fragment would like to participate in populating the
+  // options menu by receiving a call to onCreateOptionsMenu(Menu, MenuInflater)
+  // and related methods.
+  @Override
+  public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setHasOptionsMenu(true);
+  }
+
+
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
     Bundle savedInstanceState) {

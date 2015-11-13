@@ -19,14 +19,6 @@ public class CrimeLab {
   private List<Crime> mCrimes;
 
 
-  // Get the singleton instance.
-  public static CrimeLab get(Context context) {
-    if (sCrimeLab == null) {
-      sCrimeLab = new CrimeLab(context);
-    }
-    return sCrimeLab;
-  }
-
   // Private constructor, only allow access to singleton instance.
   private CrimeLab(Context context) {
 
@@ -49,6 +41,18 @@ public class CrimeLab {
 
       mCrimes.add(crime);
     }
+  }
+
+  // Get the singleton instance.
+  public static CrimeLab get(Context context) {
+    if (sCrimeLab == null) {
+      sCrimeLab = new CrimeLab(context);
+    }
+    return sCrimeLab;
+  }
+
+  public void addCrime(Crime c) {
+    mCrimes.add(c);
   }
 
   public List<Crime> getCrimes() {
