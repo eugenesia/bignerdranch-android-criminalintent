@@ -21,9 +21,12 @@
       </intent-filter>
     </activity>
 
+    <!-- parentActivityName enables the "up" button for hierarchical navigation,
+      to go back "up" to CrimeListActivity. -->
     <activity
       android:name=".CrimePagerActivity"
-      android:label="@string/app_name">
+      android:label="@string/app_name"
+      android:parentActivityName=".CrimeListActivity">
     </activity>
 
   </application>
