@@ -3,6 +3,7 @@ package com.bignerdranch.android.criminalintent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -105,6 +106,20 @@ public class CrimeListFragment extends Fragment {
       default:
         return super.onOptionsItemSelected(item);
     }
+  }
+
+
+  // Set toolbar's subtitle.
+  private void updateSubtitle() {
+    CrimeLab crimeLab = CrimeLab.get(getActivity());
+    int crimeCount = crimeLab.getCrimes().size();
+
+    // Format the subtitle according to the pre-set format, showing the number
+    // of crimes.
+    String subtitle = getString(R.string.subtitle_format, crimeCount);
+
+    AppCompatActivity activity = (AppCompatActivity) getActivity();
+    activity.getSupportActionBar().setSubtitle(subtitle);
   }
 
 
