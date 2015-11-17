@@ -103,6 +103,11 @@ public class CrimeListFragment extends Fragment {
         // Javascript preventDefault().
         return true;
 
+      // Show the subtitle.
+      case R.id.menu_item_show_subtitle:
+        updateSubtitle();
+        return true;
+
       default:
         return super.onOptionsItemSelected(item);
     }
