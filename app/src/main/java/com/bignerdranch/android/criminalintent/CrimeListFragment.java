@@ -23,6 +23,9 @@ import java.util.List;
  */
 public class CrimeListFragment extends Fragment {
 
+  // Key of extra to save subtitle visibility for recreation after rotation.
+  private static final String SAVED_SUBTITLE_VISIBLE = "subtitle";
+
   // RecyclerView shows a list of ViewHolders, which shows Crimes in a list.
   private RecyclerView mCrimeRecyclerView;
 
@@ -60,6 +63,11 @@ public class CrimeListFragment extends Fragment {
     // work. If you forget to give it one, it will crash.
     mCrimeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+    // Get back saved visibility setting after rotation.
+    if (savedInstanceState != null) {
+      mSubtitleVisible = savedInstanceState.getBoolean(SAVED_SUBTITLE_VISIBLE);
+    }
+
     updateUI();
 
     return view;
@@ -72,6 +80,14 @@ public class CrimeListFragment extends Fragment {
   public void onResume() {
     super.onResume();
     updateUI();
+  }
+
+
+  // Save subtitle visibility for after rotation.
+  @Override
+  public void onSaveInstanceState(Bundle outState) {
+    super.onSaveInstanceState(outState);
+    outState.putBoolean(SAVED_SUBTITLE_VISIBLE, mSubtitleVisible);
   }
 
 
