@@ -25,8 +25,13 @@ public class CrimeListFragment extends Fragment {
 
   // RecyclerView shows a list of ViewHolders, which shows Crimes in a list.
   private RecyclerView mCrimeRecyclerView;
+
   // Adapter manages data and binding.
   private CrimeAdapter mAdapter;
+
+  // Whether subtitle is visible. Used to recreate visibility state when toolbar
+  // is recreated e.g. when rotating.
+  private boolean mSubtitleVisible;
 
 
   // Report that this fragment would like to participate in populating the
