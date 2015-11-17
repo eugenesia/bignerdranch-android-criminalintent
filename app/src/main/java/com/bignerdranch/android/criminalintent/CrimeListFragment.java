@@ -118,7 +118,13 @@ public class CrimeListFragment extends Fragment {
     // of crimes.
     String subtitle = getString(R.string.subtitle_format, crimeCount);
 
+    // The activity that is hosting the CrimeListFragment is cast to an
+    // AppCompatActivity. CriminalIntent uses the AppCompat library, so all
+    // activities will be a subclass of AppCompatActivity, which allows you to
+    // access the toolbar. For legacy reasons, the toolbar is still referred to
+    // as “action bar” in many places within the AppCompat library.
     AppCompatActivity activity = (AppCompatActivity) getActivity();
+
     activity.getSupportActionBar().setSubtitle(subtitle);
   }
 
