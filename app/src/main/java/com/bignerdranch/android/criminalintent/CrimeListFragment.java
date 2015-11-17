@@ -169,6 +169,8 @@ public class CrimeListFragment extends Fragment {
       // edited the Crime details.
       mAdapter.notifyDataSetChanged();
     }
+    // Show or hide subtitle when coming here from onResume() or onCreate().
+    updateSubtitle();
   }
 
 
