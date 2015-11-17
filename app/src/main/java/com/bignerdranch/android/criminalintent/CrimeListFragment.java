@@ -138,6 +138,10 @@ public class CrimeListFragment extends Fragment {
     // of crimes.
     String subtitle = getString(R.string.subtitle_format, crimeCount);
 
+    if (! mSubtitleVisible) {
+      subtitle = null;
+    }
+
     // The activity that is hosting the CrimeListFragment is cast to an
     // AppCompatActivity. CriminalIntent uses the AppCompat library, so all
     // activities will be a subclass of AppCompatActivity, which allows you to
