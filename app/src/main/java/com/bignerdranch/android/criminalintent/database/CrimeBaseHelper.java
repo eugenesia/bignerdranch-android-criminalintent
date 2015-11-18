@@ -38,8 +38,21 @@ public class CrimeBaseHelper extends SQLiteOpenHelper {
   // Called on initial db creation.
   @Override
   public void onCreate(SQLiteDatabase db) {
+
     // Execute SQL to create crimes table.
-    db.execSQL("create table " + CrimeTable.NAME);
+    //
+    // Creating a table in SQLite requires less ceremony than in other
+    // databases: you do not have to specify the type of a column at creation
+    // time. It is a good idea to do that, but here you will save a bit of labor
+    // by doing without it.
+    db.execSQL("create table " + CrimeTable.NAME + "(" +
+      " _id integer primary key autoincrement, " +
+      CrimeTable.Cols.UUID + ", " +
+      CrimeTable.Cols.TITLE + ", " +
+      CrimeTable.Cols.DATE + ", " +
+      CrimeTable.Cols.SOLVED +
+      ")"
+    );
   }
 
 
