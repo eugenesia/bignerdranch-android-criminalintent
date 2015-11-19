@@ -65,7 +65,6 @@ public class CrimeLab {
     return values;
   }
 
-
   // Insert a row into database.
   public void addCrime(Crime c) {
     ContentValues values = getContentValues(c);
@@ -89,5 +88,18 @@ public class CrimeLab {
   public Crime getCrime(UUID id) {
     // Crime not found.
     return null;
+  }
+
+  // Update a crime in the database.
+  public void updateCrime(Crime crime) {
+
+    String uuidString = crime.getId().toString();
+    ContentValues values = getContentValues(crime);
+
+    // Use placeholder "?" which will be substituted with uuidString, prevent
+    // SQL injection.
+    mDatabase.update(CrimeTable.NAME, values,
+      CrimeTable.Cols.UUID + " = ?",
+      new String[] { uuidString });
   }
 }
