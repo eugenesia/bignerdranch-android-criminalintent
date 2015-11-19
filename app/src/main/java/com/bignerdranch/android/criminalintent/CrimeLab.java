@@ -65,7 +65,20 @@ public class CrimeLab {
     return values;
   }
 
+
+  // Insert a row into database.
   public void addCrime(Crime c) {
+    ContentValues values = getContentValues(c);
+
+    // 2nd arg is nullColumnHack. Well, say that you decided to call insert()
+    // with an empty ContentValues. SQLite does not allow this, so your insert()
+    // call would fail.
+    //
+    // If you passed in a value of uuid for nullColumnHack, though, it would
+    // ignore that empty ContentValues. Instead, it would pass in a
+    // ContentValues with uuid set to null. This would allow your insert() to
+    // succeed and create a new row.
+    mDatabase.insert(CrimeTable.NAME, null, values);
   }
 
   public List<Crime> getCrimes() {
