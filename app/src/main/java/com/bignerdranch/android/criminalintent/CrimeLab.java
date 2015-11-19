@@ -124,9 +124,27 @@ public class CrimeLab {
 
   // Get crime with a particular id.
   public Crime getCrime(UUID id) {
-    // Crime not found.
-    return null;
+
+    CrimeCursorWrapper cursor = queryCrimes(
+      CrimeTable.Cols.UUID + " = ?",
+      new String[] { id.toString() }
+    );
+
+    try {
+      if (cursor.getCount() == 0) {
+        // Crime not found.
+        return null;
+      }
+
+      // Just return the first crime found.
+      cursor.moveToFirst();
+      return cursor.getCrime();
+    }
+    finally {
+      cursor.close();
+    }
   }
+
 
   // Update a crime in the database.
   public void updateCrime(Crime crime) {
