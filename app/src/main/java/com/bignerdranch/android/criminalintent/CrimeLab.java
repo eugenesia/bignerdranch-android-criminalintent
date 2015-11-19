@@ -1,9 +1,11 @@
 package com.bignerdranch.android.criminalintent;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.bignerdranch.android.criminalintent.database.CrimeBaseHelper;
+import com.bignerdranch.android.criminalintent.database.CrimeDbSchema.CrimeTable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +42,27 @@ public class CrimeLab {
       sCrimeLab = new CrimeLab(context);
     }
     return sCrimeLab;
+  }
+
+  // Convert a crime into a ContentValues object suitable for storing in SQLite.
+  private static ContentValues getContentValues(Crime crime) {
+
+    // Writes and updates to databases are done with the assistance of a class
+    // called ContentValues. ContentValues is a key-value store class, like
+    // Java's HashMap or the Bundles you have been using so far. However, unlike
+    // HashMap or Bundle it is specifically designed to store the kinds of data
+    // SQLite can hold.
+
+    ContentValues values = new ContentValues();
+
+    // Keys must be column names. Every column is specified here except for _id,
+    // which is automatically created for you as a unique row ID.
+    values.put(CrimeTable.Cols.UUID, crime.getId().toString());
+    values.put(CrimeTable.Cols.TITLE, crime.getTitle());
+    values.put(CrimeTable.Cols.DATE, crime.getDate().getTime());
+    values.put(CrimeTable.Cols.SOLVED, crime.isSolved() ? 1 : 0);
+
+    return values;
   }
 
   public void addCrime(Crime c) {
