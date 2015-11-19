@@ -100,9 +100,27 @@ public class CrimeLab {
     mDatabase.insert(CrimeTable.NAME, null, values);
   }
 
+
+  // Read database and get all crimes.
   public List<Crime> getCrimes() {
-    return new ArrayList<>();
+    List<Crime> crimes = new ArrayList<>();
+
+    CrimeCursorWrapper cursor = queryCrimes(null, null);
+
+    try {
+      cursor.moveToFirst();
+      while (! cursor.isAfterLast()) {
+        crimes.add(cursor.getCrime());
+        cursor.moveToNext();
+      }
+    }
+    finally {
+      cursor.close();
+    }
+
+    return crimes;
   }
+
 
   // Get crime with a particular id.
   public Crime getCrime(UUID id) {
