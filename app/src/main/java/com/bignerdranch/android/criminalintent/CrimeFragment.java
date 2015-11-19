@@ -70,6 +70,17 @@ public class CrimeFragment extends Fragment {
     mCrime = CrimeLab.get(getActivity()).getCrime(crimeId);
   }
 
+
+  // Write out updated crime when this Fragment is done.
+  @Override
+  public void onPause() {
+    super.onPause();
+
+    CrimeLab.get(getActivity())
+      .updateCrime(mCrime);
+  }
+
+
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup parent,
                            Bundle savedInstanceState) {
