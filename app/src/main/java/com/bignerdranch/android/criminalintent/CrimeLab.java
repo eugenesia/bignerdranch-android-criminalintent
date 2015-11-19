@@ -69,7 +69,7 @@ public class CrimeLab {
 
   // Read crime from database.
   private Cursor queryCrimes(String whereClause, String[] whereArgs) {
-    
+
     Cursor cursor = mDatabase.query(
       CrimeTable.NAME,
       null, // Columns - null selects all columns
