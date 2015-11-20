@@ -3,6 +3,7 @@ package com.bignerdranch.android.criminalintent;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.text.Editable;
@@ -185,6 +186,18 @@ public class CrimeFragment extends Fragment {
         i = Intent.createChooser(i, getString(R.string.send_report));
 
         startActivity(i);
+      }
+    });
+
+    // Intent to select a contact as the "suspect".
+    final Intent pickContact = new Intent(Intent.ACTION_PICK,
+      ContactsContract.Contacts.CONTENT_URI);
+
+    mSuspectButton = (Button) v.findViewById(R.id.crime_suspect);
+    mSuspectButton.setOnClickListener(new View.OnClickListener() {
+      public void onClick(View v) {
+        // Return the details of the contact selected as the result.
+        startActivityForResult(pickContact, REQUEST_CONTACT);
       }
     });
 
