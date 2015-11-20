@@ -203,6 +203,10 @@ public class CrimeFragment extends Fragment {
       }
     });
 
+    if (mCrime.getSuspect() != null) {
+      mSuspectButton.setText(mCrime.getSuspect());
+    }
+
     // Return inflated fragment view with its listeners back to the
     // Activity.
     return v;
