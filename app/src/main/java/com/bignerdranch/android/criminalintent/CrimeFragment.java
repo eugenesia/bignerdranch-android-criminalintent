@@ -174,6 +174,11 @@ public class CrimeFragment extends Fragment {
         i.putExtra(Intent.EXTRA_SUBJECT,
           getString(R.string.crime_report_subject));
 
+        // Always show a chooser to choose an app.
+        // Create a chooser to display the activities that respond to the
+        // implicit intent. Then pass the intent into startActivity().
+        i = Intent.createChooser(i, getString(R.string.send_report));
+
         startActivity(i);
       }
     });
