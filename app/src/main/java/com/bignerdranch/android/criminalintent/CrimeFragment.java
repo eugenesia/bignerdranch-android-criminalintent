@@ -2,6 +2,7 @@ package com.bignerdranch.android.criminalintent;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -205,6 +206,15 @@ public class CrimeFragment extends Fragment {
 
     if (mCrime.getSuspect() != null) {
       mSuspectButton.setText(mCrime.getSuspect());
+    }
+
+    // PackageManager knows about all the components on the device.
+    PackageManager packageManager = getActivity().getPackageManager();
+
+    // Check with PackageManager if a contact app is installed.
+    if (packageManager.resolveActivity(pickContact,
+      PackageManager.MATCH_DEFAULT_ONLY) == null) {
+      mSuspectButton.setEnabled(false);
     }
 
     // Return inflated fragment view with its listeners back to the
