@@ -302,5 +302,11 @@ public class CrimeListFragment extends Fragment {
     public int getItemCount() {
       return mCrimes.size();
     }
+
+
+    // Refresh the snapshot in mCrimes with the latest crimes.
+    public void setCrimes(List<Crime> crimes) {
+      mCrimes = crimes;
+    }
   }
 }
