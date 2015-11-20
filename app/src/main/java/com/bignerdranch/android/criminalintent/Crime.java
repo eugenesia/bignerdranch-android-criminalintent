@@ -13,6 +13,9 @@ public class Crime {
   private Date mDate;
   // Date the crime was solved.
   private boolean mSolved;
+  // Name of suspect.
+  private String mSuspect;
+
 
   public Crime() {
 
@@ -52,5 +55,13 @@ public class Crime {
 
   public void setSolved(boolean solved) {
     mSolved = solved;
+  }
+
+  public String getSuspect() {
+    return mSuspect;
+  }
+
+  public void setSuspect(String suspect) {
+    mSuspect = suspect;
   }
 }
