@@ -174,6 +174,7 @@ public class CrimeListFragment extends Fragment {
     // Get the singleton instance.
     CrimeLab crimeLab = CrimeLab.get(getActivity());
 
+    // Latest list of crimes from database.
     List<Crime> crimes = crimeLab.getCrimes();
 
     if (mAdapter == null) {
@@ -181,6 +182,9 @@ public class CrimeListFragment extends Fragment {
       mCrimeRecyclerView.setAdapter(mAdapter);
     }
     else {
+      // Refresh the mAdapter's crimes snapshot with database data.
+      mAdapter.setCrimes(crimes);
+
       // Notify listeners that the dataset has changed, as user might have
       // edited the Crime details.
       mAdapter.notifyDataSetChanged();
