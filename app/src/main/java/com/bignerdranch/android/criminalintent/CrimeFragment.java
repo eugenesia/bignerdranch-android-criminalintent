@@ -38,6 +38,9 @@ public class CrimeFragment extends Fragment {
   private Button mDateButton;
   // Whether the crime has been solved.
   private CheckBox mSolvedCheckBox;
+  // Button to send crime report.
+  private Button mReportButton;
+
 
   // To attach the arguments bundle to a fragment, you call
   // Fragment.setArguments(Bundle). Attaching arguments to a fragment must be
@@ -148,6 +151,30 @@ public class CrimeFragment extends Fragment {
       public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         // Set the crime's solved property.
         mCrime.setSolved(isChecked);
+      }
+    });
+
+    // Button to send a crime report.
+    mReportButton = (Button) v.findViewById(R.id.crime_report);
+
+    mReportButton.setOnClickListener(new View.OnClickListener() {
+
+      public void onClick(View v) {
+
+        // Create implicit intent.
+        Intent i = new Intent(Intent.ACTION_SEND);
+        // There is no constructor that accepts a type, so set explicitly.
+        i.setType("text/plain");
+
+        // You include the text of the report and the string for the subject of
+        // the report as extras. Note that these extras use constants defined in
+        // the Intent class. Any activity responding to this intent will know
+        // these constants and what to do with the associated values.
+        i.putExtra(Intent.EXTRA_TEXT, getCrimeReport());
+        i.putExtra(Intent.EXTRA_SUBJECT,
+          getString(R.string.crime_report_subject));
+
+        startActivity(i);
       }
     });
 
