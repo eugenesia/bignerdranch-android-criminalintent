@@ -30,6 +30,9 @@ public class CrimeFragment extends Fragment {
   // Request code for date data returned from DatePickerFragment.
   private static final int REQUEST_DATE = 0;
 
+  // Key to store contact (suspect) passed back here.
+  private static final int REQUEST_CONTACT = 1;
+
   // Data for crime being shown.
   private Crime mCrime;
   // Editable title of the crime.
@@ -38,6 +41,8 @@ public class CrimeFragment extends Fragment {
   private Button mDateButton;
   // Whether the crime has been solved.
   private CheckBox mSolvedCheckBox;
+  // Button to select suspect.
+  private Button mSuspectButton;
   // Button to send crime report.
   private Button mReportButton;
 
