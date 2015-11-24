@@ -19,6 +19,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import java.util.Date;
 import java.util.UUID;
@@ -49,6 +51,10 @@ public class CrimeFragment extends Fragment {
   private Button mSuspectButton;
   // Button to send crime report.
   private Button mReportButton;
+  // Button to take photo.
+  private ImageButton mPhotoButton;
+  // Button to show photo.
+  private ImageView mPhotoView;
 
 
   // To attach the arguments bundle to a fragment, you call
@@ -220,6 +226,10 @@ public class CrimeFragment extends Fragment {
       PackageManager.MATCH_DEFAULT_ONLY) == null) {
       mSuspectButton.setEnabled(false);
     }
+
+    // Camera button and photo image.
+    mPhotoButton = (ImageButton) v.findViewById(R.id.crime_camera);
+    mPhotoView = (ImageView) v.findViewById(R.id.crime_photo);
 
     // Return inflated fragment view with its listeners back to the
     // Activity.
