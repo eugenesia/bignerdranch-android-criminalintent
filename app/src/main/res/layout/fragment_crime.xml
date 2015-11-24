@@ -8,20 +8,6 @@
   <!-- Include camera layout -->
   <include layout="@layout/view_camera_and_title" />
 
-  <!-- Title of crime -->
-  <TextView
-    style="?android:listSeparatorTextViewStyle"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="@string/crime_title_label" />
-
-  <!-- Title of crime - editable -->
-  <EditText
-    android:id="@+id/crime_title"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="@string/crime_title_hint"/>
-
   <!-- Details of crime -->
   <TextView
     style="?android:listSeparatorTextViewStyle"
