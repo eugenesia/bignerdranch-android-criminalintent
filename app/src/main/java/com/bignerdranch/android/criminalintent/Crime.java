@@ -64,4 +64,9 @@ public class Crime {
   public void setSuspect(String suspect) {
     mSuspect = suspect;
   }
+
+  // Generate unique filename from ID, to store photo of crime.
+  public String getPhotoFilename() {
+    return "IMG_" + getId().toString() + ".jpg";
+  }
 }
