@@ -22,6 +22,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import java.io.File;
 import java.util.Date;
 import java.util.UUID;
 
@@ -41,6 +42,8 @@ public class CrimeFragment extends Fragment {
 
   // Data for crime being shown.
   private Crime mCrime;
+  // File object for the crime photo.
+  private File mPhotoFile;
   // Editable title of the crime.
   private EditText mTitleField;
   // Button showing date and allowing edit via date picker.
@@ -87,6 +90,9 @@ public class CrimeFragment extends Fragment {
     UUID crimeId = (UUID) getArguments().getSerializable(ARG_CRIME_ID);
 
     mCrime = CrimeLab.get(getActivity()).getCrime(crimeId);
+
+    // File object for the crime photo.
+    mPhotoFile = CrimeLab.get(getActivity()).getPhotoFile(mCrime);
   }
 
 
