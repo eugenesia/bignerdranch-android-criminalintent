@@ -4,6 +4,22 @@
           android:versionCode="1"
           android:versionName="1.0">
 
+  <!-- Here, Android expects you to ask permission because it wants to enforce
+    some accountability. You tell Android that you need to access external
+    storage, and Android will then tell the user that this is one of the things
+    your application does when they try to install it. That way, nobody is
+    surprised when you start saving things to their SD card.
+
+    In Android 4.4, KitKat, they loosened this restriction. Since
+    Context.getExternalFilesDir(String) returns a folder that is specific to
+    your app, it makes sense that you would want to be able to read and write
+    files that live there. So on Android 4.4 (API 19) and up, you do not need
+    this permission for this folder. (But you still need it for other kinds of
+    external storage.)
+  -->
+  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+    android:maxSdkVersion="18" />
+
   <uses-sdk
     android:minSdkVersion="8"
     android:targetSdkVersion="17"/>
