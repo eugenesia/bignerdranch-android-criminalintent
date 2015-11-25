@@ -16,6 +16,14 @@
     files that live there. So on Android 4.4 (API 19) and up, you do not need
     this permission for this folder. (But you still need it for other kinds of
     external storage.)
+
+    The maxSdkVersion attribute makes it so that your app only asks for this
+    permission on versions of Android that are older than API 19, Android
+    KitKat.
+
+    Note that you are only asking to read external storage. There is also a
+    WRITE_EXTERNAL_STORAGE permission, but you do not need it. You will not be
+    writing anything to external storage: The camera app will do that for you.
   -->
   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
     android:maxSdkVersion="18" />
