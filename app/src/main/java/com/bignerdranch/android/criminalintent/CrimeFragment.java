@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.text.Editable;
@@ -39,6 +40,9 @@ public class CrimeFragment extends Fragment {
 
   // Key to store contact (suspect) passed back here.
   private static final int REQUEST_CONTACT = 1;
+
+  // Key to store photo details passed back here.
+  private static final int REQUEST_PHOTO = 2;
 
   // Data for crime being shown.
   private Crime mCrime;
@@ -235,6 +239,31 @@ public class CrimeFragment extends Fragment {
 
     // Camera button and photo image.
     mPhotoButton = (ImageButton) v.findViewById(R.id.crime_camera);
+
+    // Implicit intent for photo taking app.
+    final Intent captureImage = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+    // mPhotoFile: Intended file location for photo.
+    boolean canTakePhoto = mPhotoFile != null &&
+      // Determine whether there's camera app available.
+      captureImage.resolveActivity(packageManager) != null;
+
+    mPhotoButton.setEnabled(canTakePhoto);
+
+    if (canTakePhoto) {
+      Uri uri = Uri.fromFile(mPhotoFile);
+      // Send the photo file destination.
+      captureImage.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+    }
+
+    // Start camera app on click.
+    mPhotoButton.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        startActivityForResult(captureImage, REQUEST_PHOTO);
+      }
+    });
+
     mPhotoView = (ImageView) v.findViewById(R.id.crime_photo);
 
     // Return inflated fragment view with its listeners back to the
