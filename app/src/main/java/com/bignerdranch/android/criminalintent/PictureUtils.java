@@ -19,11 +19,21 @@ public class PictureUtils {
     float srcHeight = options.outHeight;
 
     // Figure out how much to scale down by.
+    // The key parameter above is inSampleSize. This determines how big each
+    // "sample" should be for each pixel - a sample size of 1 has one final
+    // horizontal pixel for each horizontal pixel in the original file, and a
+    // sample size of 2 has one horizontal pixel for every two horizontal pixels
+    // in the original file. So when inSampleSize is 2, the image has a quarter
+    // of the number of pixels of the original.
     int inSampleSize = 1;
+
     if (srcHeight > destHeight || srcWidth > destWidth) {
+
+      // Image has portrait aspect ratio.
       if (srcWidth > srcHeight) {
         inSampleSize = Math.round(srcHeight / destHeight);
       }
+      // Image has landscape aspect ratio.
       else {
         inSampleSize = Math.round(srcWidth / destWidth);
       }
