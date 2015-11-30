@@ -266,6 +266,7 @@ public class CrimeFragment extends Fragment {
     });
 
     mPhotoView = (ImageView) v.findViewById(R.id.crime_photo);
+    updatePhotoView();
 
     // Return inflated fragment view with its listeners back to the
     // Activity.
@@ -323,6 +324,9 @@ public class CrimeFragment extends Fragment {
       finally {
         c.close();
       }
+    }
+    else if (requestCode == REQUEST_PHOTO) {
+      updatePhotoView();
     }
   }
 
