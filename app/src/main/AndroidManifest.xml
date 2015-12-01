@@ -28,6 +28,10 @@
   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
     android:maxSdkVersion="18" />
 
+  <!-- Uses camera but not mandatory. -->
+  <uses-feature android:name="android.hardware.camera"
+    android:required="false" />
+
   <uses-sdk
     android:minSdkVersion="8"
     android:targetSdkVersion="17"/>
